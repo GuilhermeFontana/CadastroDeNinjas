@@ -21,16 +21,19 @@ public class NinjaModel {
 
     private Long id;
 
+    @Column(name = "nome_ninja")
     private String nome;
+
 
     @Column(unique = true)
     private String email;
 
+    @Column(name = "idade_ninja")
     private int idade;
 
     // o ninja tem somente uuma unica missao
     @ManyToOne
-    @JoinColumn(name ="missoes_id")
+    @JoinColumn(name ="missoes_id") // foreing key
     private MissoesModel missoes;
 
 
