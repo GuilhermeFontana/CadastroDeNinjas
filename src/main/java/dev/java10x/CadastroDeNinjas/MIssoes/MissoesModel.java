@@ -1,49 +1,37 @@
 package dev.java10x.CadastroDeNinjas.MIssoes;
 
 
+import dev.java10x.CadastroDeNinjas.Ninjas.NinjaModel;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.naming.NameAlreadyBoundException;
+
 
 @Entity
 @Table(name = "tb_missoes")
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class MissoesModel {
 
 
     @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private long id;
+
     private String nome;
+
     private RankMissoes dificuldadeMissoes;
 
-    public MissoesModel() {
-    }
+    //Uma missao pode ter varios ninjas
 
-    public MissoesModel(long id, String nome, RankMissoes dificuldadeMissoes) {
-        this.id = id;
-        this.nome = nome;
-        this.dificuldadeMissoes = dificuldadeMissoes;
-    }
+    @ManyToMany(mappedBy = "missoes")
+    private NinjaModel ninjas;
 
-    public long getId() {
-        return id;
-    }
 
-    public void setId(long id) {
-        this.id = id;
-    }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public RankMissoes getDificuldadeMissoes() {
-        return dificuldadeMissoes;
-    }
-
-    public void setDificuldadeMissoes(RankMissoes dificuldadeMissoes) {
-        this.dificuldadeMissoes = dificuldadeMissoes;
-    }
 }
