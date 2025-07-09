@@ -28,7 +28,7 @@ public class NinjaModel {
     @Column(unique = true)
     private String email;
 
-    @Column(name = "idade_ninja")
+    @Column(name = "idade")
     private int idade;
 
     // o ninja tem somente uuma unica missao

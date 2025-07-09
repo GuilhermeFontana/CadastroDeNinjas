@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.naming.NameAlreadyBoundException;
+import java.util.List;
 
 
 @Entity
@@ -29,8 +30,8 @@ public class MissoesModel {
 
     //Uma missao pode ter varios ninjas
 
-    @ManyToMany(mappedBy = "missoes")
-    private NinjaModel ninjas;
+    @OneToMany(mappedBy = "missoes")
+    private List <NinjaModel> ninjas;
 
 
 
