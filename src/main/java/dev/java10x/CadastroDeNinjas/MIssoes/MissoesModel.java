@@ -26,7 +26,7 @@ public class MissoesModel {
 
     private String nome;
 
-    private RankMissoes dificuldadeMissoes;
+    private String dificuldade;
 
     //Uma missao pode ter varios ninjas
 
