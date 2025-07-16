@@ -1,26 +1,29 @@
 package dev.java10x.CadastroDeNinjas.MIssoes;
 
 
+import dev.java10x.CadastroDeNinjas.Ninjas.NinjaModel;
+import dev.java10x.CadastroDeNinjas.Ninjas.NinjaService;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
-@RequestMapping
+@RequestMapping("/missoes")
 public class MissoesController {
 
-    @GetMapping("/bemvindomissoes")
-    public String bemVindoMissoes(){
-        return "Bem vindo a pagina de missoes!";
+    private MissoesService missoesService;
+
+    public MissoesController(MissoesService missoesService) {
+        this.missoesService = missoesService;
     }
 
-
-
     //missoes
-    @GetMapping("/missoes")
-    public String todasMissoes(){
-        return "Aqui voce podera ver as missoes e seus detalhes disponiveis!";
+    @GetMapping("/consultarmissoes")
+    public List<MissoesModel> todasMissoes(){
+        return missoesService.todasMissoes();
     }
 
     //status da missao
@@ -35,6 +38,8 @@ public class MissoesController {
     public String cancelarMissoes(){
         return "Aqui voce podera cancelar sua missao e ser um otario! ";
     }
+
+
 
 
 
