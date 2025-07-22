@@ -1,5 +1,6 @@
 package dev.java10x.CadastroDeNinjas.MIssoes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.java10x.CadastroDeNinjas.Ninjas.NinjaModel;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,8 @@ public class MissoesDTO {
     private long id;
     private String nome;
     private String dificuldade;
+
+    @JsonIgnore
     private List<NinjaModel> ninjas;
 
     public long getId() {

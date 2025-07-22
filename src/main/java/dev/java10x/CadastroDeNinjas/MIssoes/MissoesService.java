@@ -57,15 +57,25 @@ public class MissoesService {
 
     //Missoes alterar (Update)
 
-    public MissoesDTO atualizarMissao(Long id, MissoesDTO missoesDTO){
+    public MissoesDTO atualizarMissao(Long id, MissoesDTO missoesDTO) {
         Optional<MissoesModel> missaoExistente = missoesRepository.findById(id);
 
-        if (missaoExistente.isPresent()){
-            MissoesModel missaoAtualizada = missoesMapper.map(missoesDTO);
-            missaoAtualizada.setId(id);
-            MissoesModel missaoAtualizado2 = missoesRepository.save(missaoAtualizada);
-            return missoesMapper.map(missaoAtualizado2);
+        if (missaoExistente.isPresent()) {
+            MissoesModel missaoParaAtualizar = missaoExistente.get();
 
+            // Atualiza APENAS os campos que não são nulos no DTO
+            if (missoesDTO.getNome() != null) {
+                missaoParaAtualizar.setNome(missoesDTO.getNome());
+            }
+            if (missoesDTO.getDificuldade() != null) {
+                missaoParaAtualizar.setDificuldade(missoesDTO.getDificuldade());
+            }
+            if (missoesDTO.getNinjas() != null) {
+                missaoParaAtualizar.setNinjas(missoesDTO.getNinjas());
+            }
+
+            MissoesModel missaoAtualizada = missoesRepository.save(missaoParaAtualizar);
+            return missoesMapper.map(missaoAtualizada);
         }
         return null;
     }
